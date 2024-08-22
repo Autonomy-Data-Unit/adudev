@@ -1,0 +1,22 @@
+[tool.poetry]
+name = "nbdev"
+version = "0.1.0"
+description = "ADU's fork of nbdev"
+authors = ["Lukas Kikuchi <lukas.kikuchi@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+fastcore = ">=1.5.27"
+execnb = ">=0.1.4"
+ghapi = ">=1.0.3"
+astunparse = "^1.6.3"
+watchdog = "^4.0.2"
+asttokens = "^2.4.1"
+jupytext = "^1.16.4"
+nbformat = "^5.10.4"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
