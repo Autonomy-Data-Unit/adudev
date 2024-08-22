@@ -1,8 +1,12 @@
+[build-system]
+requires = [ "poetry-core",]
+build-backend = "poetry.core.masonry.api"
+
 [tool.poetry]
 name = "nbdev"
-version = "0.1.0"
+version = "0.1.1"
 description = "ADU's fork of nbdev"
-authors = ["Lukas Kikuchi <lukas.kikuchi@gmail.com>"]
+authors = [ "Lukas Kikuchi <lukas.kikuchi@gmail.com>",]
 readme = "README.md"
 
 [tool.poetry.dependencies]
@@ -15,8 +19,3 @@ watchdog = "^4.0.2"
 asttokens = "^2.4.1"
 jupytext = "^1.16.4"
 nbformat = "^5.10.4"
-
-
-[build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"

@@ -825,3 +825,24 @@
 - Initial release
 
 
+
+## [0.1.1] - 2024-08-22
+
+### Added
+
+feat: add support for .py files in nbdev in py:percent format
+
+- Introduces the ability to handle .py files as py:percent files within nbdev.
+    - Does this by converting .py files to .ipynb format as an intermediate step in `NBProcessor.__init__`
+- Added example of usage in 'nbs/api/04_export.ipynb'.
+
+Can export all *.py files by running `nbdev_export --file_glob '*.py'`
+
+See https://jupytext.readthedocs.io/en/latest/formats-scripts.html for info on the py:percent format.
+
+### Changed
+
+### Fixed
+
+
+
