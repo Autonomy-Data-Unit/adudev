@@ -14,6 +14,8 @@ from fastcore.imports import *
 
 from collections import defaultdict
 
+import jupytext, nbformat, tempfile
+
 # %% ../nbs/api/03_process.ipynb 6
 # from https://github.com/quarto-dev/quarto-cli/blob/main/src/resources/jupyter/notebook.py
 langs = defaultdict(
@@ -90,7 +92,18 @@ def _is_direc(f): return getattr(f, '__name__', '-')[-1]=='_'
 class NBProcessor:
     "Process cells and nbdev comments in a notebook"
     def __init__(self, path=None, procs=None, nb=None, debug=False, rm_directives=True, process=False):
-        self.nb = read_nb(path) if nb is None else nb
+        
+        if nb is None:
+            if str(path).endswith(".py"):
+                nb_converted = jupytext.read(path)
+                with tempfile.NamedTemporaryFile(delete=True, suffix=".ipynb") as temp_file:
+                    nbformat.write(nb_converted, temp_file.name)
+                    self.nb = read_nb(temp_file.name) if nb is None else nb
+            else:
+                self.nb = read_nb(path)
+        else:
+            self.nb = nb
+            
         self.lang = nb_lang(self.nb)
         for cell in self.nb.cells: cell.directives_ = extract_directives(cell, remove=rm_directives, lang=self.lang)
         self.procs = _mk_procs(procs, nb=self.nb)
